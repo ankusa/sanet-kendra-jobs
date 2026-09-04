@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { Search, MapPin, GraduationCap, CalendarDays, ShieldCheck, ExternalLink, Printer } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
 
 type Job = { title: string; source: string; qualification: string; location: string; lastDate: string; href: string };
 const sampleJobs: Job[] = [
@@ -18,8 +17,6 @@ export default function Home() {
   const [jobs, setJobs] = useState<Job[]>(sampleJobs);
   const [query, setQuery] = useState('');
   const [qualification, setQualification] = useState('All');
-  const [siteUrl, setSiteUrl] = useState('https://your-github-name.github.io/jobs/');
-  useEffect(() => setSiteUrl(window.location.href.split('#')[0]), []);
   useEffect(() => {
     fetch('./jobs.json').then((response) => response.json()).then((data) => {
       if (Array.isArray(data.jobs) && data.jobs.length) setJobs(data.jobs);
@@ -64,7 +61,7 @@ export default function Home() {
       <section className="print-poster">
         <p className="poster-kicker">SANET KENDRA · PALA FATAK</p><h1>आज की नई भर्तियां</h1><p className="poster-sub">10वीं · 12वीं · ITI · Diploma · Graduate</p>
         <div className="poster-jobs">{jobs.slice(0, 5).map((job, i) => <div key={job.title}><b>{i + 1}</b><span>{job.title}</span><strong>{job.lastDate}</strong></div>)}</div>
-        <div className="qr-placeholder"><QRCodeSVG value={siteUrl} size={150} level="H" marginSize={2}/><p><strong>पूरी जानकारी मोबाइल पर देखें</strong><br/>कैमरा खोलें और QR स्कैन करें</p></div>
+        <div className="qr-placeholder"><img src="qr.svg" alt="Scan to open the jobs webpage"/><p><strong>पूरी जानकारी मोबाइल पर देखें</strong><br/>कैमरा खोलें और QR स्कैन करें</p></div>
         <p className="poster-warning">केवल आधिकारिक वेबसाइट पर आवेदन करें · किसी अनजान व्यक्ति को पैसे न दें</p>
       </section>
       <footer>सूचनाएं Sarkari Result और Sarkari CSC से खोजी जाती हैं तथा आधिकारिक स्रोत से सत्यापन आवश्यक है। यह वेबसाइट किसी सरकारी विभाग या निजी स्रोत वेबसाइट से संबद्ध नहीं है।</footer>

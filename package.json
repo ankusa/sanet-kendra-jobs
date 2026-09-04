@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build",
+    "build": "node scripts/generate-qr.mjs && vinext build",
     "update-jobs": "node scripts/collect-jobs.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
@@ -23,6 +23,7 @@
     "embla-carousel-react": "8.5.2",
     "input-otp": "1.4.2",
     "lucide-react": "1.31.0",
+    "qrcode": "^1.5.4",
     "qrcode.react": "^4.2.0",
     "react": "19.2.6",
     "react-day-picker": "9.8.1",
