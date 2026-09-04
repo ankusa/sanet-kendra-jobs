@@ -1,27 +1,27 @@
 {
-  "_framework-D_rUT4EX.js": {
-    "file": "_next/static/chunks/framework-D_rUT4EX.js",
+  "_framework-CvzsfC5e.js": {
+    "file": "sanet-kendra-jobs/_next/static/chunks/framework-CvzsfC5e.js",
     "name": "framework",
     "imports": [
-      "_rolldown-runtime-C60lm6uB.js"
+      "_rolldown-runtime-TOVRLn9H.js"
     ]
   },
-  "_rolldown-runtime-C60lm6uB.js": {
-    "file": "_next/static/chunks/rolldown-runtime-C60lm6uB.js",
+  "_rolldown-runtime-TOVRLn9H.js": {
+    "file": "sanet-kendra-jobs/_next/static/chunks/rolldown-runtime-TOVRLn9H.js",
     "name": "rolldown-runtime"
   },
   "app/page.tsx": {
-    "file": "_next/static/chunks/page-BsZ0oae6.js",
+    "file": "sanet-kendra-jobs/_next/static/chunks/page-nrII8Nl3.js",
     "name": "page",
     "src": "app/page.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_rolldown-runtime-C60lm6uB.js",
-      "_framework-D_rUT4EX.js"
+      "_rolldown-runtime-TOVRLn9H.js",
+      "_framework-CvzsfC5e.js"
     ]
   },
   "node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js": {
-    "file": "_next/static/chunks/app-route-prefetch-policy-BCBMrdQu.js",
+    "file": "sanet-kendra-jobs/_next/static/chunks/app-route-prefetch-policy-DEMWAo86.js",
     "name": "app-route-prefetch-policy",
     "src": "node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
     "isDynamicEntry": true,
@@ -30,34 +30,34 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-bwg9ZAlV.js",
+    "file": "sanet-kendra-jobs/_next/static/chunks/layout-segment-context-BOQjar-9.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
-      "_rolldown-runtime-C60lm6uB.js",
+      "_rolldown-runtime-TOVRLn9H.js",
       "virtual:vinext-app-browser-entry",
-      "_framework-D_rUT4EX.js"
+      "_framework-CvzsfC5e.js"
     ]
   },
   "node_modules/vinext/dist/shims/streamed-icons.js": {
-    "file": "_next/static/chunks/streamed-icons-Bumrcy-j.js",
+    "file": "sanet-kendra-jobs/_next/static/chunks/streamed-icons-EalQ0h3E.js",
     "name": "streamed-icons",
     "src": "node_modules/vinext/dist/shims/streamed-icons.js",
     "isDynamicEntry": true,
     "imports": [
-      "_rolldown-runtime-C60lm6uB.js",
-      "_framework-D_rUT4EX.js"
+      "_rolldown-runtime-TOVRLn9H.js",
+      "_framework-CvzsfC5e.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-QSXMv7Ft.js",
+    "file": "sanet-kendra-jobs/_next/static/chunks/index-B2wHsPyM.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
-      "_rolldown-runtime-C60lm6uB.js",
-      "_framework-D_rUT4EX.js"
+      "_rolldown-runtime-TOVRLn9H.js",
+      "_framework-CvzsfC5e.js"
     ],
     "dynamicImports": [
       "node_modules/vinext/dist/shims/internal/app-route-prefetch-policy.js",
