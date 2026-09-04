@@ -22,6 +22,16 @@ export default function Home() {
     const matchesQuery = `${job.title} ${job.location} ${job.qualification}`.toLowerCase().includes(query.toLowerCase());
     return matchesQuery && (qualification === 'All' || job.qualification.includes(qualification));
   }), [query, qualification]);
+  const noticeJobs = useMemo(() => {
+    const popular = [
+      /UPSSSC PET/i,
+      /India Post GDS/i,
+      /IBPS.*(?:RRB|Gramin Bank)|(?:RRB|Gramin Bank).*IBPS/i,
+      /SSC.*(?:Junior Engineer|\bJE\b)|(?:Junior Engineer|\bJE\b).*SSC/i,
+    ].map((pattern) => jobs.find((job) => pattern.test(job.title))).filter((job): job is Job => Boolean(job));
+    const additions = jobs.filter((job) => !popular.some((picked) => picked.href === job.href));
+    return [...popular, ...additions].slice(0, 4);
+  }, [jobs]);
 
   return (
     <main>
@@ -45,9 +55,9 @@ export default function Home() {
         <div>
           <div className="section-heading"><div><p className="eyebrow">APPLICATIONS OPEN</p><h2>अभी आवेदन करें</h2></div><span>{visible.length} नौकरियां</span></div>
           <div className="job-list">
-            {visible.map((job, index) => <article className="job-card" key={job.title}>
+            {visible.map((job, index) => <article className="job-card" key={`${job.href}-${index}`}>
               <div className="number">{String(index + 1).padStart(2, '0')}</div>
-              <div className="job-main"><p className="source">{job.source}</p><h3>{job.title}</h3><div className="meta"><span><GraduationCap size={16}/>{job.qualification}</span><span><MapPin size={16}/>{job.location}</span><span><CalendarDays size={16}/>{job.lastDate}</span></div></div>
+              <div className="job-main"><h3>{job.title}</h3><div className="meta"><span><GraduationCap size={16}/>{job.qualification}</span><span><MapPin size={16}/>{job.location}</span><span><CalendarDays size={16}/>{job.lastDate}</span></div></div>
               <div className="job-action"><span className="verify"><ShieldCheck size={14}/> जाँच बाकी</span><a href={job.href} target="_blank" rel="noreferrer">जानकारी <ExternalLink size={15}/></a></div>
             </article>)}
           </div>
@@ -55,12 +65,12 @@ export default function Home() {
         <aside className="notice-card"><p className="eyebrow">CSC HELP DESK</p><h2>फॉर्म भरवाने में मदद चाहिए?</h2><p>आधार, फोटो, हस्ताक्षर और प्रमाणपत्र साथ लेकर केंद्र पर आएं।</p><div className="address"><MapPin size={20}/><span><strong>Sanet Kendra</strong><br/>Pala Fatak, Aligarh</span></div><div className="warning"><ShieldCheck size={20}/><span>आवेदन से पहले विभाग की आधिकारिक अधिसूचना अवश्य पढ़ें।</span></div></aside>
       </section>
       <section className="print-poster">
-        <p className="poster-kicker">SANET KENDRA · PALA FATAK</p><h1>आज की नई भर्तियां</h1><p className="poster-sub">10वीं · 12वीं · ITI · Diploma · Graduate</p>
-        <div className="poster-jobs">{jobs.slice(0, 5).map((job, i) => <div key={job.title}><b>{i + 1}</b><span>{job.title}</span><strong>{job.lastDate}</strong></div>)}</div>
+        <p className="poster-kicker">SANET KENDRA · PALA FATAK</p><h1>4 लोकप्रिय भर्तियां</h1><p className="poster-sub">10वीं · 12वीं · ITI · Diploma · Graduate</p>
+        <div className="poster-jobs">{noticeJobs.map((job, i) => <div key={`${job.href}-${i}`}><b>{i + 1}</b><span>{job.title}</span><strong>{job.lastDate}</strong></div>)}</div>
         <div className="qr-placeholder"><img src="qr.svg" alt="Scan to open the jobs webpage"/><p><strong>पूरी जानकारी मोबाइल पर देखें</strong><br/>कैमरा खोलें और QR स्कैन करें</p></div>
         <p className="poster-warning">केवल आधिकारिक वेबसाइट पर आवेदन करें · किसी अनजान व्यक्ति को पैसे न दें</p>
       </section>
-      <footer>सूचनाएं Sarkari Result और Sarkari CSC से खोजी जाती हैं तथा आधिकारिक स्रोत से सत्यापन आवश्यक है। यह वेबसाइट किसी सरकारी विभाग या निजी स्रोत वेबसाइट से संबद्ध नहीं है।</footer>
+      <footer>प्रत्येक भर्ती की जानकारी संबंधित विभाग की आधिकारिक अधिसूचना से अवश्य जाँचें। यह वेबसाइट किसी सरकारी विभाग से संबद्ध नहीं है।</footer>
     </main>
   );
 }
