@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Search, MapPin, GraduationCap, CalendarDays, ShieldCheck, ExternalLink, Printer } from 'lucide-react';
+import jobsData from '../public/jobs.json';
 
 type Job = { title: string; source: string; qualification: string; location: string; lastDate: string; href: string };
 const sampleJobs: Job[] = [
@@ -14,14 +15,9 @@ const sampleJobs: Job[] = [
 ];
 
 export default function Home() {
-  const [jobs, setJobs] = useState<Job[]>(sampleJobs);
+  const [jobs] = useState<Job[]>(jobsData.jobs.length ? jobsData.jobs : sampleJobs);
   const [query, setQuery] = useState('');
   const [qualification, setQualification] = useState('All');
-  useEffect(() => {
-    fetch('./jobs.json').then((response) => response.json()).then((data) => {
-      if (Array.isArray(data.jobs) && data.jobs.length) setJobs(data.jobs);
-    }).catch(() => undefined);
-  }, []);
   const visible = useMemo(() => jobs.filter((job) => {
     const matchesQuery = `${job.title} ${job.location} ${job.qualification}`.toLowerCase().includes(query.toLowerCase());
     return matchesQuery && (qualification === 'All' || job.qualification.includes(qualification));

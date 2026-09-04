@@ -7,8 +7,6 @@ on:
     branches: [main]
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -25,10 +23,6 @@ jobs:
       - name: Collect public job headlines
         run: npm run update-jobs
       - run: npm run build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/client
       - name: Save refreshed index
         run: |
           git config user.name github-actions[bot]
@@ -36,4 +30,8 @@ jobs:
           git add public/jobs.json
           git diff --cached --quiet || git commit -m "Update job index [skip ci]"
           git push
-      - uses: actions/deploy-pages@v4
+      - name: Publish GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/client
